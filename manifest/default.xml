@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<manifest>
+
+    <!-- Remote ufficiale LineageOS -->
+    <remote name="los" fetch="https://github.com/LineageOS/" />
+
+    <!-- Default: branch lineage-22.2 -->
+    <default revision="lineage-22.2" remote="los" sync-j="4" />
+
+    <!-- Device tree -->
+    <project name="Thecatt6/lineageos-sm-t719-build" path="device/samsung/gts28velte" revision="main" />
+
+    <!-- Kernel -->
+    <project name="Thecatt6/lineageos-sm-t719-build" path="kernel/samsung/msm8976" revision="main" />
+
+    <!-- Vendor -->
+    <project name="Thecatt6/lineageos-sm-t719-build" path="vendor/samsung/gts28velte" revision="main" />
+
+</manifest>

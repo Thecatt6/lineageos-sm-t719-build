@@ -1,0 +1,45 @@
+name: Sync LineageOS 22.2
+
+on:
+  workflow_dispatch: {}
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout this repo
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Install repo tool
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y git-core curl python3
+          mkdir -p ~/bin
+          curl https://storage.googleapis.com/git-repo-downloads/repo > ~/bin/repo
+          chmod a+x ~/bin/repo
+          echo "$HOME/bin" >> $GITHUB_PATH
+
+      - name: Init LineageOS 22.2
+        run: |
+          mkdir -p los
+          cd los
+          repo init -u https://github.com/LineageOS/android.git -b lineage-22.2
+
+      - name: Sync only needed repos
+        run: |
+          cd los
+          repo sync -c --no-tags --no-clone-bundle -j($nproc) device/samsung kernel/samsung vendor/samsung
+
+      - name: Replace with your trees
+        run: |
+          rsync -a --delete device/samsung/gts28velte/ los/device/samsung/gts28velte/
+          rsync -a --delete kernel/samsung/msm8976/ los/kernel/samsung/msm8976/
+          rsync -a --delete vendor/samsung/gts28velte/ los/vendor/samsung/gts28velte/
+
+      - name: Commit manifest (optional)
+        run: |
+          mkdir -p los/.repo/local_manifests
+          cp manifest/default.xml los/.repo/local_manifests/
