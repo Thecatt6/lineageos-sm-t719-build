@@ -77,7 +77,7 @@ PRODUCT_PACKAGES += \
 
 # Init scripts (must go to vendor/etc/init)
 PRODUCT_COPY_FILES += \
-    $(DEVICE_PATH)/rootdir/etc/init.gts28velte.rc:$(TARGET_COPY_OUT_VENDOR)/etc/init/init.gts28velte.rc \
+    $(DEVICE_PATH)/rootdir/vendor/etc/init/init.gts28velte.rc:$(TARGET_COPY_OUT_VENDOR)/etc/init/init.gts28velte.rc \
     $(DEVICE_PATH)/rootdir/etc/fstab.gts28velte:$(TARGET_COPY_OUT_VENDOR)/etc/fstab.gts28velte
 
 # Permissions (modern)
