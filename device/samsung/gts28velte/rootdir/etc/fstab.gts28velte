@@ -1,22 +1,19 @@
 # fstab for Samsung Galaxy Tab S2 8.0 LTE (gts28velte)
-# Android 14/15 compatible, legacy partition layout
+# Android 14/15 compatible
 
-# <src>                        <mnt_point>  <type>  <mnt_flags>                                  <fs_mgr_flags>
+# <src>                                              <mnt_point>  <type>  <mnt_flags>                                   <fs_mgr_flags>
 
-# System (ext4)
-#/dev/block/platform/msm_sdcc.1/by-name/SYSTEM   /system     ext4    ro,barrier=1,discard                         wait,logical,first_stage_mount
-
-# Vendor (ext4)
-#/dev/block/platform/msm_sdcc.1/by-name/VENDOR   /vendor     ext4    ro,barrier=1,discard                         wait,logical,first_stage_mount
+# System (read-only, system-as-root)
+#/dev/block/platform/soc.0/7824900.sdhci/by-name/system   /system     ext4    ro,barrier=1,discard                         wait,first_stage_mount
 
 # Data
-/dev/block/platform/msm_sdcc.1/by-name/USERDATA  /data       ext4    noatime,nosuid,nodev,discard,barrier=1       wait,check,quota,formattable,resize
+/dev/block/platform/soc.0/7824900.sdhci/by-name/userdata  /data       ext4    noatime,nosuid,nodev,discard,barrier=1       wait,check,quota,formattable,resize
 
 # Cache
-/dev/block/platform/msm_sdcc.1/by-name/CACHE     /cache      ext4    noatime,nosuid,nodev,discard,barrier=1       wait,check,formattable
+/dev/block/platform/soc.0/7824900.sdhci/by-name/cache     /cache      ext4    noatime,nosuid,nodev,discard,barrier=1       wait,check,formattable
 
-# Metadata (comment out if needed)
-/dev/block/platform/msm_sdcc.1/by-name/METADATA  /metadata   ext4    noatime,nosuid,nodev,discard,barrier=1       wait,check,formattable
+# Persist
+/dev/block/platform/soc.0/7824900.sdhci/by-name/persist   /persist    ext4    noatime,nosuid,nodev,discard,barrier=1       wait,check,formattable
 
-# Misc (not mounted, only for fs_mgr)
-/dev/block/platform/msm_sdcc.1/by-name/MISC      /misc       emmc    defaults                                      defaults
+# Param (misc-equivalent)
+/dev/block/platform/soc.0/7824900.sdhci/by-name/param     /param      ext4    noatime,nosuid,nodev,discard,barrier=1       wait,check,formattable
