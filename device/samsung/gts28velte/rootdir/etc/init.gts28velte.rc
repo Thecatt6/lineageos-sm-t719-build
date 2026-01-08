@@ -1,0 +1,16 @@
+on early-init
+    mkdir /mnt/vendor 0755 root root
+
+on init
+    setprop ro.hardware gts28velte
+
+on boot
+    chown system system /sys/devices/...
+    chmod 0660 /sys/devices/...
+
+service vendor.audio-hal-2-0 /vendor/bin/hw/android.hardware.audio@2.0-service
+    class hal
+    user audioserver
+    group audio
+    disabled
+    oneshot

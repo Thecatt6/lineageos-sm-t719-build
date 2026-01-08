@@ -1,0 +1,2 @@
+/system/bin/your-daemon      u:object_r:your_daemon_exec:s0
+/vendor/bin/your-vendor      u:object_r:vendor_file:s0

@@ -1,0 +1,6 @@
+soong_namespace {
+    imports: [
+        "device/samsung/gts28velte",
+        "vendor/samsung/gts28velte",
+    ]
+}

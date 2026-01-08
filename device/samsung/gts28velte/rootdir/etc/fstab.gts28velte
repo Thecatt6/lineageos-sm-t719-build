@@ -17,3 +17,6 @@
 
 # Param (misc-equivalent)
 /dev/block/platform/soc.0/7824900.sdhci/by-name/param     /param      ext4    noatime,nosuid,nodev,discard,barrier=1       wait,check,formattable
+
+# Vendor (not present)
+/dev/block/platform/soc.0/7824900.sdhci/by-name/vendor /vendor ext4 ro,barrier=1,discard wait,first_stage_mount

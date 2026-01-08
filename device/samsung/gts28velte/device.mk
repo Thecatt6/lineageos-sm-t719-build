@@ -1,12 +1,22 @@
 # Device configuration for Samsung Galaxy Tab S2 8.0 LTE (gts28velte)
 
 DEVICE_PATH := device/samsung/gts28velte
+LOCAL_PATH := $(call my-dir)
+
+# Device characteristics
+PRODUCT_CHARACTERISTICS := tablet
+
+# Dalvik heap config (tablet, 3GB RAM)
+$(call inherit-product, frameworks/native/build/tablet-2560-dalvik-heap.mk)
 
 # Inherit vendor blobs
 $(call inherit-product-if-exists, vendor/samsung/gts28velte/gts28velte-vendor.mk)
 
 # Inherit common msm8976 configuration
 $(call inherit-product, device/samsung/msm8976-common/msm8976.mk)
+
+# AAPT config
+PRODUCT_AAPT_CONFIG := normal PRODUCT_AAPT_PREF_CONFIG := xhdpi
 
 # Shipping API level (Android 6.0 originally)
 PRODUCT_SHIPPING_API_LEVEL := 23
@@ -73,7 +83,10 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
     Gts28velteFrameworkOverlay \
     Gts28velteSettingsOverlay \
-    Gts28velteSystemUIOverlay
+    Gts28velteSystemUIOverlay \
+    framework-res \
+    Settings \
+    SystemUI
 
 # Init scripts (must go to vendor/etc/init)
 PRODUCT_COPY_FILES += \
@@ -83,7 +96,8 @@ PRODUCT_COPY_FILES += \
 # Permissions (modern)
 PRODUCT_COPY_FILES += \
     $(DEVICE_PATH)/configs/permissions/android.hardware.camera.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/android.hardware.camera.xml \
-    $(DEVICE_PATH)/configs/permissions/android.hardware.location.gps.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/android.hardware.location.gps.xml
+    $(DEVICE_PATH)/configs/permissions/android.hardware.location.gps.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/android.hardware.location.gps.xml \
+    frameworks/native/data/etc/tablet_core_hardware.xml:$(TARGET_COPY_OUT_SYSTEM)/etc/permissions/tablet_core_hardware.xml
 
 # Dalvik VM configuration
 $(call inherit-product, frameworks/native/build/phone-xhdpi-2048-dalvik-heap.mk)

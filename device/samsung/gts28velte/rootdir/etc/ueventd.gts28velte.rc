@@ -1,0 +1,3 @@
+/dev/snd/*               0660   system   audio
+/dev/msm_pcm_*           0660   system   audio
+/dev/msm_snd*            0660   system   audio

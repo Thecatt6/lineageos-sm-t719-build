@@ -1,6 +1,5 @@
 # Product definition for LineageOS 22.2 (Android 15)
 PRODUCT_NAME := lineage_gts28velte
-PRODUCT_TYPE := full
 PRODUCT_DEVICE := gts28velte
 PRODUCT_BRAND := samsung
 PRODUCT_MODEL := SM-T719
@@ -24,5 +23,5 @@ $(call inherit-product, $(LOCAL_PATH)/device.mk)
 # Properties
 PRODUCT_COMPATIBLE_PROPERTY_OVERRIDE := true
 
-# Shipping API level
+# Shipping API level (SM-T719 originally Android 6.0)
 PRODUCT_SHIPPING_API_LEVEL := 23

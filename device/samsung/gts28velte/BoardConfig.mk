@@ -1,46 +1,50 @@
-# Copyright (C) 2016 The CyanogenMod Project
-# Licensed under the Apache License, Version 2.0
+TARGET_DEVICE := gts28velte
+TARGET_VENDOR := samsung
 
-# Inherit from common msm8976 configuration
--include device/samsung/msm8976-common/BoardConfigCommon.mk
+BOARD_VENDOR := samsung
+TARGET_BOARD_PLATFORM := msm8976
+TARGET_BOARD_PLATFORM_GPU := qcom-adreno510
 
-DEVICE_PATH := device/samsung/gts28velte
+TARGET_ARCH := arm64
+TARGET_ARCH_VARIANT := armv8-a
+TARGET_CPU_VARIANT := generic
 
-# Assert
-TARGET_OTA_ASSERT_DEVICE := gts28velte
+TARGET_2ND_ARCH := arm
+TARGET_2ND_ARCH_VARIANT := armv7-a-neon
+TARGET_2ND_CPU_VARIANT := cortex-a53
 
-# HIDL / AIDL
-DEVICE_MANIFEST_FILE += $(DEVICE_PATH)/manifest.xml
+TARGET_SUPPORTS_64_BIT_APPS := true
+TARGET_SUPPORTS_32_BIT_APPS := true
 
-# Kernel
-TARGET_KERNEL_CONFIG := gts28velte_defconfig
+TARGET_USES_64_BIT_BINDER := true
 
-# Modern Android kernel flags
-TARGET_KERNEL_CLANG_COMPILE := true
-TARGET_KERNEL_CLANG_VERSION := r416183b
-TARGET_USES_BINDERFS := true
-TARGET_ENABLE_CGROUPV2 := true
+BOARD_BOOTIMAGE_PARTITION_SIZE := 33554432
+BOARD_RECOVERYIMAGE_PARTITION_SIZE := 33554432
+BOARD_SYSTEMIMAGE_PARTITION_SIZE := 3221225472
+BOARD_VENDORIMAGE_PARTITION_SIZE := 536870912
 
-# Boot image format (Android 12+ requirement)
-BOARD_BOOT_HEADER_VERSION := 2
-BOARD_MKBOOTIMG_ARGS += --header_version $(BOARD_BOOT_HEADER_VERSION)
+BOARD_FLASH_BLOCK_SIZE := 131072
 
-# Include DTB in boot image
-BOARD_INCLUDE_DTB_IN_BOOTIMG := true
-BOARD_INCLUDE_RECOVERY_DTBO := true
+BOARD_KERNEL_CMDLINE := console=ttyHSL0,115200,n8 androidboot.hardware=qcom
+BOARD_KERNEL_BASE := 0x80000000
+BOARD_KERNEL_PAGESIZE := 2048
 
-# System properties
-TARGET_SYSTEM_PROP += $(DEVICE_PATH)/system.prop
+TARGET_KERNEL_ARCH := arm64
+TARGET_KERNEL_HEADER_ARCH := arm64
+TARGET_KERNEL_SOURCE := kernel/samsung/msm8976
+TARGET_KERNEL_CONFIG := lineageos_gts28velte_defconfig
 
-# Filesystem support
-TARGET_USERIMAGES_USE_F2FS := true
-TARGET_USERIMAGES_USE_EXT4 := true
+BOARD_ROOT_EXTRA_FOLDERS += \
+    firmware \
+    persist
 
-# AVB (disabled for legacy Samsung)
-BOARD_AVB_MAKE_VBMETA_IMAGE := false
+BOARD_SEPOLICY_VERS := 33.0
+SELINUX_IGNORE_NEVERALLOWS := false
 
-# SELinux enforcing (required for Android 14+)
-BOARD_KERNEL_CMDLINE += androidboot.selinux=enforcing
+BOARD_USES_RECOVERY_AS_BOOT := false
+BOARD_BUILD_SYSTEM_ROOT_IMAGE := true
 
-# Inherit vendor configuration
--include vendor/samsung/gts28velte/BoardConfigVendor.mk
+TARGET_COPY_OUT_VENDOR := vendor
+BOARD_VENDORIMAGE_FILE_SYSTEM_TYPE := ext4
+BOARD_SYSTEMIMAGE_FILE_SYSTEM_TYPE := ext4
+BOARD_USERDATAIMAGE_FILE_SYSTEM_TYPE := ext4
